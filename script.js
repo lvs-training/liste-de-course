@@ -3,55 +3,59 @@ var input = document.getElementById("userinput");
 var ul = document.querySelector("ul");
 var listItems = document.querySelectorAll("li");
 
+button.addEventListener("click", addListItemOnClick);
+input.addEventListener("keypress", addListItemOnKeypress);
+
+/* set events and add buttons for all list items */
+for (const li of listItems) {
+    setListItem(li);
+}
+
 function inputLength() {
     return input.value.length;
 }
 
-function createListElement() {
-    var li = document.createElement("li");
-    li.addEventListener("click", toggleli);
-    li.appendChild(document.createTextNode(input.value));
-    ul.appendChild(li);
+/* Add button and set events for li sent as a parameter */
+function setListItem(li) {
+    li.addEventListener("click", toggleListItem);
     let btn = li.appendChild(document.createElement("button"))
     btn.innerText = "delete";
     btn.addEventListener("click",
         function() {
-            deleteLi(btn);
+            deleteListItem(btn);
         }
     );
+}
+
+/* Add an item to the list */
+function addListItem() {
+    var li = document.createElement("li");
+    
+    li.appendChild(document.createTextNode(input.value));
+    ul.appendChild(li);
+
+    setListItem(li);
+
     input.value = "";
 }
 
-function addListAfterClick() {
+function addListItemOnClick() {
     if (inputLength() > 0) {
-        createListElement();
+        addListItem();
     }
 }
 
-function toggleli(elem) {
+function addListItemOnKeypress(event) {
+    if (inputLength() > 0 && event.keyCode === 13) {
+        addListItem();
+    }
+}
+
+/* Toggle list item class. This class affect the item bg color */
+function toggleListItem(elem) {
     elem.target.classList.toggle('done');
 }
 
-function addListeAfterKeypress(event) {
-    if (inputLength() > 0 && event.keyCode === 13) {
-        createListElement();
-    }
-}
-
-function deleteLi(btn) {
+function deleteListItem(btn) {
     btn.parentElement.remove();
-}
-
-button.addEventListener("click", addListAfterClick);
-input.addEventListener("keypress", addListeAfterKeypress);
-
-for (const li of listItems) {
-    li.addEventListener("click", toggleli);
-    let btn = li.appendChild(document.createElement("button"))
-    btn.innerText = "delete";
-    btn.addEventListener("click",
-        function() {
-            deleteLi(btn);
-        }
-    );
 }

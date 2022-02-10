@@ -1,11 +1,74 @@
-.done {
-    background-color: green;
+@font-face {
+    font-family: "Lobster";
+    src: url('fonts/lobster/eot/lobster-regular.eot');
+    src: url('fonts/lobster/eot/lobster-regular.eot') format('embedded-opentype'),
+         url('fonts/lobster/woff2/lobster-regular.woff2') format('woff2'),
+         url('fonts/lobster/woff/lobster-regular.woff') format('woff'),
+         url('fonts/lobster/ttf/lobster-regular.ttf') format('truetype');
 }
 
-button {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Lobster", "Tahoma", "sans-serif";
+    font-size: 2em;
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+}
+
+.container__title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.container__list-wrapper__list {
+    margin-top: 20px;
+    list-style: none;
+}
+
+.container__input-wrapper__btn-delete--done {
+    background-color: #9cc59d;
+}
+
+.container__input-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.container__input-wrapper__btn-delete, 
+.container__input-wrapper__btn-add {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+.container__input-wrapper__btn-enter {
     margin-left:10px;
 }
 
-li {
+.container__list-wrapper__list__item {
     padding:5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
 }

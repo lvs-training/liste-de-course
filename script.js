@@ -1,7 +1,7 @@
-var button = document.getElementById("enter");
-var input = document.getElementById("userinput");
-var ul = document.querySelector("ul");
-var listItems = document.querySelectorAll("li");
+const button = document.querySelector(".container__input-wrapper__btn-add");
+const input = document.querySelector(".container__input-wrapper__input-user");
+const ul = document.querySelector(".container__list-wrapper__list");
+const listItems = document.querySelectorAll(".container__list-wrapper__list__item");
 
 button.addEventListener("click", addListItemOnClick);
 input.addEventListener("keypress", addListItemOnKeypress);
@@ -18,7 +18,8 @@ function inputLength() {
 /* Add button and set events for li sent as a parameter */
 function setListItem(li) {
     li.addEventListener("click", toggleListItem);
-    let btn = li.appendChild(document.createElement("button"))
+    let btn = li.appendChild(document.createElement("button"));
+    btn.classList.add("container__input-wrapper__btn-delete");
     btn.innerText = "delete";
     btn.addEventListener("click",
         function() {
@@ -29,7 +30,8 @@ function setListItem(li) {
 
 /* Add an item to the list */
 function addListItem() {
-    var li = document.createElement("li");
+    let li = document.createElement("li");
+    li.classList.add("container__list-wrapper__list__item");
     
     li.appendChild(document.createTextNode(input.value));
     ul.appendChild(li);
@@ -51,9 +53,9 @@ function addListItemOnKeypress(event) {
     }
 }
 
-/* Toggle list item class. This class affect the item bg color */
+/* Toggle list item class. This class affects the item bg color */
 function toggleListItem(elem) {
-    elem.target.classList.toggle('done');
+    elem.target.classList.toggle('container__input-wrapper__btn-delete--done');
 }
 
 function deleteListItem(btn) {
